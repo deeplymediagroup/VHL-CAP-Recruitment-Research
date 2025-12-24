@@ -250,6 +250,9 @@ If you get connection errors:
 
 MIT
 
+---
+*VHL Recruitment Tracker - Track recruitment metrics for the Victory Hockey League*
+
 ## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
