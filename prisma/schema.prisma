@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Recruit {
+  id                String    @id @default(uuid())
+  topicId           Int       @unique @map("topic_id")
+  topicUrl          String    @map("topic_url")
+  topicTitle        String    @map("topic_title")
+  createdAt         DateTime? @map("created_at")
+  seasonNumber      Int?      @map("season_number")
+  username          String?
+  playerName        String?   @map("player_name")
+  recruitedFrom     String?   @map("recruited_from")
+  position          String?
+  age               Int?
+  heightIn          Int?      @map("height_in")
+  weightLbs         Int?      @map("weight_lbs")
+  birthplace        String?
+  rawTextSnapshot   String?   @map("raw_text_snapshot") @db.Text
+  ingestedAt        DateTime  @default(now()) @map("ingested_at")
+
+  @@index([seasonNumber])
+  @@index([username])
+  @@index([playerName])
+  @@index([recruitedFrom])
+  @@map("recruits")
+}
+
+model Season {
+  id           String    @id @default(uuid())
+  seasonNumber Int       @unique @map("season_number")
+  startDate    DateTime  @map("start_date") @db.Date
+  endDate      DateTime? @map("end_date") @db.Date
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("seasons")
+}
+
+enum RunType {
+  RSS_POLL
+  BACKFILL
+  LIGHT_CRAWL
+}
+
+model IngestionRun {
+  id             String    @id @default(uuid())
+  runType        RunType   @map("run_type")
+  startedAt      DateTime  @default(now()) @map("started_at")
+  finishedAt     DateTime? @map("finished_at")
+  itemsFound     Int       @default(0) @map("items_found")
+  topicsIngested Int       @default(0) @map("topics_ingested")
+  topicsFailed   Int       @default(0) @map("topics_failed")
+  errorsJson     Json?     @map("errors_json")
+
+  @@map("ingestion_runs")
+}
+
+model Checkpoint {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("checkpoints")
+}

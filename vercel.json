@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/ingest/rss",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/ingest/light-crawl",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
