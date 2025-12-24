@@ -13,14 +13,14 @@ export interface PlayerData {
 
 // Regex patterns from spec
 const FIELD_PATTERNS = {
-  username: /(?im)^\s*Username:\s*(.+)\s*$/,
-  playerName: /(?im)^\s*Player\s+Name:\s*(.+)\s*$/,
-  recruitedFrom: /(?im)^\s*Recruited\s+From:\s*(.+)\s*$/,
-  age: /(?im)^\s*Age:\s*(\d+)\s*$/,
-  position: /(?im)^\s*Position:\s*(.+)\s*$/,
-  heightIn: /(?im)^\s*Height:\s*(\d+)\s*in\.?\s*$/,
-  weightLbs: /(?im)^\s*Weight:\s*(\d+)\s*lbs?\.?\s*$/,
-  birthplace: /(?im)^\s*Birthplace:\s*(.+)\s*$/,
+  username: /^\s*Username:\s*(.+)\s*$/im,
+  playerName: /^\s*Player\s+Name:\s*(.+)\s*$/im,
+  recruitedFrom: /^\s*Recruited\s+From:\s*(.+)\s*$/im,
+  age: /^\s*Age:\s*(\d+)\s*$/im,
+  position: /^\s*Position:\s*(.+)\s*$/im,
+  heightIn: /^\s*Height:\s*(\d+)\s*in\.?\s*$/im,
+  weightLbs: /^\s*Weight:\s*(\d+)\s*lbs?\.?\s*$/im,
+  birthplace: /^\s*Birthplace:\s*(.+)\s*$/im,
 }
 
 /**
